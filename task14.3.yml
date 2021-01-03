@@ -1,0 +1,10 @@
+- hosts: myweb
+  tasks:
+  - include_vars: "{{lookup('first_found',osname) }}"
+    vars:
+         osname:
+             files:
+             - '{{ansible_os_family}}.yml'
+  - name: "Installing Apache server soft"
+    package:
+         name: "{{package}}"
